@@ -603,27 +603,56 @@
                       <thead>
                         <tr>
                           <th>Product</th>
+                          <th>Price</th>
+                          <th>Quantity</th>
                           <th>Total</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>T-Shirt <strong> x  1</strong></td>
-                          <td>$150</td>
-                        </tr>
-                        <tr>
-                          <td>Polo T-Shirt <strong> x  1</strong></td>
-                          <td>$250</td>
-                        </tr>
-                        <tr>
-                          <td>Shoes <strong> x  1</strong></td>
-                          <td>$350</td>
-                        </tr>
+                        
+                      
+                      <?php
+
+include 'configg.php';
+
+       $sql = "SELECT * FROM cartedit";
+        $ref = "";
+        if ($result = $conn -> query($sql)) {
+        while ($row = $result -> fetch_row()) {
+
+         $ref .='<tr>
+         <td><a class="aa-cart-title" href="#">'.$row[1].'</a></td>
+         <td>'.$row[2].'</td>
+         <td><input class="aa-cart-quantity" type="number" value="'.$row[3].'"></td>
+         <td>'.$row[4].'</td>
+       </tr> ';
+            
+       
+        }
+      $result -> free_result();
+       }
+        echo $ref;
+                    ?>
                       </tbody>
                       <tfoot>
                         <tr>
                           <th>Subtotal</th>
-                          <td>$750</td>
+                          <td>$<?php 
+                    $total=0;
+                     require "configg.php";
+                     $sql1="SELECT * from cartedit ";
+                     $result=$conn->query($sql1);
+                     if ($result->num_rows > 0) {
+                      while ($row= $result->fetch_row()) {
+                        $total=$total+intval($row[4]);
+                        
+                      }
+                      echo $total;
+                    }
+                     
+                     ?>
+
+                          </td>
                         </tr>
                          <tr>
                           <th>Tax</th>
@@ -631,10 +660,15 @@
                         </tr>
                          <tr>
                           <th>Total</th>
-                          <td>$785</td>
+                          <td>$<?php 
+                    
+                  echo $total+35;
+                     
+                     ?></td>
                         </tr>
                       </tfoot>
                     </table>
+                    
                   </div>
                   <h4>Payment Method</h4>
                   <div class="aa-payment-method">                    

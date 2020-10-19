@@ -236,11 +236,11 @@
 								<p>
 									<label>Tags</label>
 									<input type="checkbox" name="tag[]" value="Fashion"/> Fashion
-	                <input type="checkbox" name="tag[]" value="Ecommerce"/> Ecommerce
-	                <input type="checkbox" name="tag[]" value="Shop"/> Shop
-	                <input type="checkbox" name="tag[]" value="handbag"/> Hand Bag
-	                <input type="checkbox" name="tag[]" value="Laptop"/> Laptop
-	                <input type="checkbox" name="tag[]" value="headphone"/> Headphone
+	                                <input type="checkbox" name="tag[]" value="Ecommerce"/> Ecommerce
+	                                <input type="checkbox" name="tag[]" value="Shop"/> Shop
+	                                <input type="checkbox" name="tag[]" value="handbag"/> Hand Bag
+	                                <input type="checkbox" name="tag[]" value="Laptop"/> Laptop
+	                                <input type="checkbox" name="tag[]" value="headphone"/> Headphone
 								</p>
 
 

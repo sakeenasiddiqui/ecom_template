@@ -357,30 +357,37 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="img/man/polo-shirt-1.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$250</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$250</td>
-                      </tr>
-                      <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="img/man/polo-shirt-2.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$150</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$150</td>
-                      </tr>
-                      <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="img/man/polo-shirt-3.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$50</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$50</td>
-                      </tr>
+
+                    <?php
+
+include 'configg.php';
+
+       $sql = "SELECT * FROM cartedit";
+        $ref = "";
+        if ($result = $conn -> query($sql)) {
+        while ($row = $result -> fetch_row()) {
+
+         $ref .='<tr>
+         <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
+         <td><a href="#"><img src="'.$row[0].'" alt="img"></a></td>
+         <td><a class="aa-cart-title" href="#">'.$row[1].'</a></td>
+         <td>'.$row[2].'</td>
+         <td><input class="aa-cart-quantity" type="number" value="'.$row[3].'"></td>
+         <td>'.$row[4].'</td>
+       </tr> ';
+            
+       
+        }
+      $result -> free_result();
+       }
+        echo $ref;
+                    ?>
+
+
+
+
+
+                      
                       <tr>
                         <td colspan="6" class="aa-cart-view-bottom">
                           <div class="aa-cart-coupon">
@@ -400,16 +407,25 @@
                <table class="aa-totals-table">
                  <tbody>
                    <tr>
-                     <th>Subtotal</th>
-                     <td>$450</td>
-                   </tr>
-                   <tr>
                      <th>Total</th>
-                     <td>$450</td>
+                     <td>$
+                       <?php 
+                    $total=0;
+                     include 'configg.php';
+                     $sql1="SELECT * from cartedit ";
+                     $result=$conn->query($sql1);
+                     if ($result->num_rows > 0) {
+                      while ($row= $result->fetch_row()) {
+                        $total = $total + intval($row[4]);
+                        
+                      }
+                      echo $total;
+                    }
+                   ?>
                    </tr>
                  </tbody>
                </table>
-               <a href="#" class="aa-cart-view-btn">Proced to Checkout</a>
+               <a href="checkout.php" class="aa-cart-view-btn">Proced to Checkout</a>
              </div>
            </div>
          </div>
